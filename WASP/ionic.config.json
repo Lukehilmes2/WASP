@@ -1,0 +1,7 @@
+{
+  "name": "WASP",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
