@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {User} from "../../models/user";
-import {AngularFireAuth} from 'angularfire2/auth';
-//import { HomePage } from '../../pages/home/home';
+import { IonicPage, NavController, NavParams,LoadingController, Loading,
+  AlertController, ModalController} from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+import { EmailValidator } from '../../validators/email';
 
 
 @IonicPage()
@@ -11,27 +12,55 @@ import {AngularFireAuth} from 'angularfire2/auth';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  user = {} as User;
 
-  constructor(private afAuth:AngularFireAuth,
-    public navCtrl: NavController, public navParams: NavParams) {
-  }
+  public loginForm: FormGroup;
+  public loading: Loading;
 
-  Login(user: User){
-    try{
-    const result = this.afAuth.auth.signInWithEmailAndPassword(user.email,user.password);
-    if(result){
-      this.navCtrl.setRoot('HomePage');
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public authData: AuthProvider, public formBuilder: FormBuilder,
+    public alertCtrl: AlertController, public loadingCtrl: LoadingController,
+    public modalCtrl: ModalController) {
+
+      this.loginForm = formBuilder.group({
+        email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
+        password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+      });
     }
 
-    } 
-    catch(e){
-      console.log(e);
+    goToResetPassword(){
+      let modal = this.modalCtrl.create('ResetPasswordPage');
+      modal.present();
     }
-  }
 
-  Register(){
-    this.navCtrl.push('RegisterPage');
-  }
+    createAccount(){
+      this.navCtrl.push('RegisterPage');
+    }
 
+    loginUser(){
+      if (!this.loginForm.valid){
+        console.log(this.loginForm.value);
+      } else {
+        this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+        .then( authData => {
+          this.navCtrl.setRoot('HomePage');
+        }, error => {
+          this.loading.dismiss().then( () => {
+            let alert = this.alertCtrl.create({
+              message: "Username or Password invalid",
+              buttons: [{
+                  text: "Ok",
+                  role: 'cancel'
+                }]
+            });
+            alert.present();
+          });
+        });
+
+        this.loading = this.loadingCtrl.create({
+          dismissOnPageChange: true,
+        });
+        this.loading.present();
+      }
+    }
 }
