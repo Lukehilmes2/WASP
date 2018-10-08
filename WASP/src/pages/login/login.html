@@ -9,18 +9,36 @@
 
 
 <ion-content padding>
+    <div text-center>
+        <img class="logo" src="assets/imgs/LogoTrans.png"/>
+     </div>
 
-  <ion-item >
-    <ion-label type = "text" floating>Email</ion-label>
-    <ion-input type = "text"[(ngModel)]= "user.email">Password</ion-input>
-  </ion-item>
+    <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
 
-  <ion-item >
-      <ion-label type = "text" floating>Password</ion-label>
-      <ion-input type = "password" [(ngModel)]= "user.password">Password</ion-input>
-    </ion-item>
-  <button ion-button (click)= Login(user)>Login</button>
-  <button ion-button (click)= Register()>Register</button>
-
+        <ion-item>
+          <ion-label floating>Email</ion-label>
+          <ion-input #email formControlName="email" type="email" [class.invalid]="!loginForm.controls.email.valid && loginForm.controls.email.dirty"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+          <ion-label floating>Password</ion-label>
+          <ion-input #password formControlName="password" type="password" [class.invalid]="!loginForm.controls.password.valid && loginForm.controls.password.dirty"></ion-input>
+        </ion-item>
+      
+      <ion-grid>
+      <ion-row justify-content-between>
+        <ion-col col-4>
+        <button class="signin" ion-button type="submit">
+            Login
+          </button>
+        </ion-col>
+        <ion-col col-6 margin-vertical >
+        <a (click)="goToResetPassword()">Forgot Password?</a>
+          </ion-col>
+      </ion-row>
+      </ion-grid>
+      </form>
+      
+       <p text-center>Don't have an account? <a (click)="createAccount()">Sign Up</a></p>
 
 </ion-content>
