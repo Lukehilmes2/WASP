@@ -1,0 +1,22 @@
+page-nav-tabs {
+   
+}
+
+.tabs-md .tabbar {
+    background: "secondary";
+}
+// all tabs texts
+.tabs-md .tab-button-text {
+	font-size: 14px;
+	color: black;
+}
+// selected tab
+.tabs-md .tab-button[aria-selected=true] {
+    .tab-button-icon {
+        color: color($colors, primary);
+    }
+    .tab-button-text {
+        font-size: 14px;
+        color: color($colors, primary);
+}
+}

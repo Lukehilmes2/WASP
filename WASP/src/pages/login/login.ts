@@ -37,13 +37,14 @@ export class LoginPage {
       this.navCtrl.push('RegisterPage');
     }
 
-    loginUser(){
+     loginUser(){
       if (!this.loginForm.valid){
-        console.log(this.loginForm.value);
+       
       } else {
-        this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
+         this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( authData => {
-          this.navCtrl.setRoot('HomePage');
+          this.navCtrl.setRoot('AccountPage');
+
         }, error => {
           this.loading.dismiss().then( () => {
             let alert = this.alertCtrl.create({
