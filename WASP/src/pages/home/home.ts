@@ -1,27 +1,66 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {AngularFireAuth} from 'angularfire2/auth';
+import { IonicPage, NavController, NavParams, LoadingController, Loading,
+  AlertController} from 'ionic-angular';
+import { AngularFireDatabase, AngularFireList, AngularFireObject,  } from 'angularfire2/database';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app'
 
-/**
- * Generated class for the HomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Profile} from '../../models/profile.model'
+import { MenuController } from 'ionic-angular';
+import { Observable } from 'rxjs';
+
 
 @IonicPage()
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
+
+
 })
 export class HomePage {
+  profile:Profile;
+  
 
-  constructor(private afAuth: AngularFireAuth, 
-    public navCtrl: NavController, public navParams: NavParams) {
-  }
 
+  
+
+ 
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public loadingCtrl: LoadingController,
+    public alertCtrl: AlertController,
+    private afAuth: AngularFireAuth, 
+    private afDataBase:AngularFireDatabase,
+    public menuCtrl:MenuController,
+ 
+ 
+    ) {
+      
+      }
+
+  
   ionViewDidLoad() {
-    this.afAuth.authState.subscribe(data => console.log(data));
-  }
+  
+
+    }
+   
+
+
+openMenu(){
+  this.menuCtrl.open();
+}
+
+closeMenu() {
+  this.menuCtrl.close();
+}
+
+toggleMenu() {
+  this.menuCtrl.toggle();
+}
+
+
 
 }

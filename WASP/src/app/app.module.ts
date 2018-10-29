@@ -7,10 +7,16 @@ import {FIREBASE_CONFIG} from './app.firebase.config';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { HttpModule } from '@angular/http';
+
 import { MyApp } from './app.component';
 
 import {AngularFireAuthModule} from 'angularfire2/auth';
 import {AngularFireModule} from 'angularfire2';
+
+
+import { PhotoService } from '../services/photo.service';
+import { Camera } from '@ionic-native/camera';
 
 
 @NgModule({
@@ -20,14 +26,20 @@ import {AngularFireModule} from 'angularfire2';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
+
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+   
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+
+    
     
   ],
   providers: [
@@ -36,6 +48,10 @@ import {AngularFireModule} from 'angularfire2';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,
     AngularFireDatabase,
-  ]
+    PhotoService,
+    Camera
+    
+    
+  ],
 })
 export class AppModule {}

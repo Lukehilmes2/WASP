@@ -44,7 +44,7 @@ ion-header {
 }
 
 ion-toolbar {
-    max-height: 15px;
+    max-height: 12px;
     text-align: center;
 }
 
@@ -60,24 +60,28 @@ ion-item-options {
     }
 }
 
+
+
+
 .toolbar {
     .icon {
-    	color: color($colors, primary);
+    	color: black;
 	}
 }
 .toolbar-background {
-    background-color: #fff;
+    background-color: color($colors, primary);
 }
 
 .toolbar-title {
-    color: color($colors, primary);
+    color: black;
 }
 
 .custom-icon {
     display: inline-block;
-    font-size: 32px;
+    font-size: 15px;
     color: color($colors, primary);
     vertical-align: middle;
+    
 }
    
 .icon-text{
@@ -95,14 +99,33 @@ ion-item-options {
 
 .roundedPic {
     margin: 5px;
-    width: 30px;
-    height: 30px;
-    -webkit-border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    //-webkit-border-radius: 50%;
     border-radius: 50%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .item_image {
     width: 100%;
     height: auto;
 }
+
+.menu{
+    $menu-md-background:black;
+    text-align: center;
+    align-items: center;
+    background: black;
+    opacity: 80%;
+}
+
+
+.hide-card {
+    -webkit-box-shadow: none!important;
+  }
+
+  
+
 
