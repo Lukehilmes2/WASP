@@ -1,5 +1,5 @@
-#WASP
-##WAGER on SPORTS
+# WASP
+## WAGER on SPORTS
 The goal of this app is to allow users to find an upcoming sports
 game and wager an amount of money with another user that is dependent
 on the outcome of the game that was chosen.
