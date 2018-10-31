@@ -7,7 +7,12 @@ import {FIREBASE_CONFIG} from './app.firebase.config';
 import { AuthProvider } from '../providers/auth/auth';
 import { AngularFireDatabase, AngularFireDatabaseModule } from 'angularfire2/database';
 
-import { HttpModule } from '@angular/http';
+
+import {UserProfileProvider} from '../providers/user-profile/user-profile'
+
+import { HttpModule} from '@angular/http';
+import { HttpClientModule } from '@angular/common/http'
+
 
 import { MyApp } from './app.component';
 
@@ -27,11 +32,12 @@ import { Camera } from '@ionic-native/camera';
   imports: [
     BrowserModule,
     HttpModule,
-
+    HttpClientModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    
    
     
   ],
@@ -49,7 +55,8 @@ import { Camera } from '@ionic-native/camera';
     AuthProvider,
     AngularFireDatabase,
     PhotoService,
-    Camera
+    Camera,
+    UserProfileProvider,
     
     
   ],

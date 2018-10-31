@@ -11,7 +11,7 @@ export class NavTabsPage {
 
 
   homeTab = 'HomePage';
-  profileTab = 'ProfilePage';
+  profileTab = 'EditprofilePage';
   notificationTab = "NotificationsPage";
   bettingTab = 'BettingPage';
 
