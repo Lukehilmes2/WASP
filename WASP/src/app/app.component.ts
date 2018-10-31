@@ -4,8 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {EditprofilePage} from '../pages/editprofile/editprofile';
-import {NgModule} from '@angular/core';
-import {Profile} from '../models/profile.model';
+
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 
 
@@ -22,7 +21,6 @@ export class MyApp {
   activePage: any;
 
   pages: Array<{title:string, component:any}>;
-  public userInfo;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
@@ -45,7 +43,7 @@ export class MyApp {
 
           if (user) {      
            
-            this.rootPage = "NavTabsPage";
+            this.rootPage = "NavTabsPage"; // change this to Profile page when it is created
             authObserver.unsubscribe();
           } 
           else {

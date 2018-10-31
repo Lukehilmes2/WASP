@@ -6,17 +6,23 @@
     </ion-item>
 
     <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
-        <ion-icon name="settings" padding></ion-icon>
-            Edit Profile
+        <ion-icon  name="person" padding></ion-icon>
+            Profile
     </button>
 
+
     <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
-        <ion-icon name="card" padding></ion-icon>
+        <ion-icon  name="card" padding></ion-icon>
             Payment Options
     </button>
 
+    <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
+        <ion-icon  name="settings" padding></ion-icon>
+            Edit Profile
+    </button>
+
     <button  ion-item>
-        <ion-icon name="key" padding></ion-icon>
+        <ion-icon  name="key" padding></ion-icon>
             Logout
     </button>
 
