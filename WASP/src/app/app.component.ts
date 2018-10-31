@@ -6,6 +6,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {EditprofilePage} from '../pages/editprofile/editprofile';
 
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { Profile } from '../models/profile.model';
 
 
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -19,19 +20,23 @@ export class MyApp {
   rootPage:any = "";
   @ViewChild(Nav) nav:Nav;
   activePage: any;
+ 
+
 
   pages: Array<{title:string, component:any}>;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     authAF: AngularFireAuth, app: App,
-    loadingCtrl: LoadingController, db:AngularFireDatabase) {
+    loadingCtrl: LoadingController, db:AngularFireDatabase,) {
 
+     
 
       this.pages =[
         
         {title:'edit profile Page',component: EditprofilePage} // add the pages of the menu here 
       ];
+      
 
       platform.ready().then(() => {
         // Okay, so the platform is ready and our plugins are available.
@@ -42,6 +47,8 @@ export class MyApp {
 
 
           if (user) {      
+
+            
            
             this.rootPage = "NavTabsPage"; // change this to Profile page when it is created
             authObserver.unsubscribe();
@@ -60,7 +67,7 @@ export class MyApp {
   }
  
   openPage(page){
-    this.nav.setRoot(page.component);
+    this.nav.push(page.component); // changed from .setroot to push
     //this.activePage = page;
   }
   

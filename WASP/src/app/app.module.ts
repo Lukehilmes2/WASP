@@ -22,11 +22,14 @@ import {AngularFireModule} from 'angularfire2';
 
 import { PhotoService } from '../services/photo.service';
 import { Camera } from '@ionic-native/camera';
+import { EditprofilePage } from '../pages/editprofile/editprofile';
+
 
 
 @NgModule({
   declarations: [
     MyApp,
+    EditprofilePage, // page for menu 
     
   ],
   imports: [
@@ -37,6 +40,7 @@ import { Camera } from '@ionic-native/camera';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+ 
     
    
     
@@ -44,6 +48,7 @@ import { Camera } from '@ionic-native/camera';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    EditprofilePage, // page for menu
 
     
     

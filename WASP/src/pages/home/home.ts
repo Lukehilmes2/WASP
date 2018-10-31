@@ -22,10 +22,6 @@ import { Observable } from 'rxjs';
 export class HomePage {
   profile:Profile;
   
-
-
-  
-
  
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -59,6 +55,10 @@ closeMenu() {
 
 toggleMenu() {
   this.menuCtrl.toggle();
+}
+
+goToNotifications(){
+  this.navCtrl.push('NotificationsPage');
 }
 
 

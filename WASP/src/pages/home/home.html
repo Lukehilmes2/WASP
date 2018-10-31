@@ -1,17 +1,25 @@
    
    <ion-header>
         <ion-navbar>
-          <button ion-button start ion-button icon-only menuToggle>
+          <button ion-button  start ion-button icon-only menuToggle>
             <ion-icon  name ='menu'>
             </ion-icon>
           </button>
-          <ion-title end>Home</ion-title>
+
+          <ion-title >Home</ion-title>
+
+          <ion-buttons end>
+            <button ion-button icon-only (click)= "goToNotifications()" >
+              <ion-icon name="notifications"></ion-icon>
+            </button>
+          </ion-buttons>
+
         </ion-navbar>
    
     </ion-header>
    
 
-  
+
 <ion-content padding>
 <ion-item>
   <ion-label></ion-label>

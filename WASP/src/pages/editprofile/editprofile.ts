@@ -5,7 +5,6 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
-
 import {Profile} from '../../models/profile.model';
 import {UserProfileProvider} from '../../providers/user-profile/user-profile';
 
@@ -21,9 +20,10 @@ export class EditprofilePage {
   public EditProfileForm: FormGroup;
   public loading: Loading;
 
-  profile= {} as Profile;
-
+  profileData: AngularFireObject<Profile>;
+  profile = {} as Profile;
   user: any;
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -40,8 +40,17 @@ export class EditprofilePage {
   } //end of constructor
 
 
-   ionViewDidLoad() {
+   ionViewDidLoad() { //this works, loads user name into fields
     console.log('ionViewDidLoad EditProfilePage');
+    this.afAuth.authState.subscribe(data => {
+      this.profileData = this.afDatabase.object(`users/${data.uid}`); 
+      this.profileData.valueChanges().subscribe(user => {
+           this.profile = user;
+           
+       });
+   });
+
+
   }   
 
 // want to use service here.

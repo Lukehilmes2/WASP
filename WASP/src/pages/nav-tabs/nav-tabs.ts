@@ -11,8 +11,7 @@ export class NavTabsPage {
 
 
   homeTab = 'HomePage';
-  profileTab = 'EditprofilePage';
-  notificationTab = "NotificationsPage";
+  socialTab = 'SocialPage';
   bettingTab = 'BettingPage';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

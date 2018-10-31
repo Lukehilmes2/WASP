@@ -5,6 +5,7 @@
         </ion-icon>
       </button>
       <ion-title end>Edit Profile</ion-title>
+
     </ion-navbar>
 
 </ion-header>
@@ -21,10 +22,9 @@
       <ion-label floating>Last Name</ion-label>
       <ion-input [(ngModel)] ='profile.lastname'></ion-input>
     </ion-item>
-
-    <button ion-button clear block (click)="createProfile()">Update Profile</button>
-
-
+ 
+    <button class = "signin" ion-button (click)="createProfile()">Update Profile</button>
+   
 
 
 

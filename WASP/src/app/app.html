@@ -1,8 +1,8 @@
  <ion-menu [content]="content">
     <ion-item text-center>
         <img src="../assets/imgs/waspLogo.png" class="roundedPic">
-        <h1 id = 'name'>{{userInfo}}</h1>
-         <!-- <h4>Email</h4> -->
+        <h1 id = 'name'>{{firstname}}</h1>
+     
     </ion-item>
 
     <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
