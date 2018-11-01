@@ -43,7 +43,7 @@ export class LoginPage {
       } else {
          this.authData.loginUser(this.loginForm.value.email, this.loginForm.value.password)
         .then( authData => {
-          this.navCtrl.setRoot('EditProfilePage');
+          this.navCtrl.setRoot('EditprofilePage');
 
         }, error => {
           this.loading.dismiss().then( () => {
