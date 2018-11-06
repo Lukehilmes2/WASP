@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading,
   AlertController} from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList ,AngularFireObject} from 'angularfire2/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { EmailValidator } from '../../validators/email';
+
+import {Profile} from '../../models/profile.model';
 
 
 @IonicPage()
@@ -17,7 +19,9 @@ export class RegisterPage {
 
   public signupForm: FormGroup;
   public loading: Loading;
-
+  profileData: AngularFireObject<Profile>;
+  profile = {} as Profile;
+  user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authData: AuthProvider, public formBuilder: FormBuilder,
@@ -29,7 +33,8 @@ export class RegisterPage {
 
     this.signupForm = formBuilder.group({
      email: ['', Validators.compose([Validators.required, EmailValidator.isValid])],
-     password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+     password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+
    });
 
 
@@ -43,7 +48,7 @@ export class RegisterPage {
       this.authData.signupUser(this.signupForm.value.email, this.signupForm.value.password)
       .then( authData => {
         this.authAF.authState.subscribe(data => {
-
+          this.createProfile();
           
         this.navCtrl.setRoot('LoginPage');
       }, error => {
@@ -69,6 +74,18 @@ export class RegisterPage {
 
   gotoLogin(){
     this.navCtrl.push('LoginPage');
+  }
+  createProfile(){
+    this.authAF.authState.subscribe(auth => {
+      
+      this.profile.firstname = "";
+      this.profile.lastname = "";
+      
+      this.db.object(`users/${auth.uid}`).set(this.profile)
+        .then(() => this.navCtrl.setRoot('NavTabsPage')
+      
+
+    )})
   }
 
 }

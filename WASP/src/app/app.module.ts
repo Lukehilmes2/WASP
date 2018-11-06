@@ -23,13 +23,15 @@ import {AngularFireModule} from 'angularfire2';
 import { PhotoService } from '../services/photo.service';
 import { Camera } from '@ionic-native/camera';
 import { EditprofilePage } from '../pages/editprofile/editprofile';
+import { SocialPageModule } from '../pages/social/social.module';
+import { EditprofilePageModule } from '../pages/editprofile/editprofile.module';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-    EditprofilePage, // page for menu 
+    //EditprofilePage, // page for menu 
     
   ],
   imports: [
@@ -40,6 +42,7 @@ import { EditprofilePage } from '../pages/editprofile/editprofile';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    EditprofilePageModule
  
     
    

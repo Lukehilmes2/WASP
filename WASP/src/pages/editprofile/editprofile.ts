@@ -46,7 +46,7 @@ export class EditprofilePage {
       this.profileData = this.afDatabase.object(`users/${data.uid}`); 
       this.profileData.valueChanges().subscribe(user => {
            this.profile = user;
-           
+
        });
    });
 
