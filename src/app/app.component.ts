@@ -26,9 +26,9 @@ export class MyApp {
   pages: Array<{title:string, component:any}>;
 
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     authAF: AngularFireAuth, app: App,
-    loadingCtrl: LoadingController, db:AngularFireDatabase) {
+    loadingCtrl: LoadingController, db:AngularFireDatabase,) {
 
      
 
@@ -64,15 +64,6 @@ export class MyApp {
         splashScreen.hide();
       });
       
-  }
-
-  ionViewDidLoad() {
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
   }
  
   openPage(page){
