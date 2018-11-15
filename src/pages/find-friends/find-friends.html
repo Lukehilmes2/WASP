@@ -1,0 +1,28 @@
+
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Find Friends</ion-title>
+  </ion-navbar>
+  <ion-searchbar placeholder ="Search email for user" (search)="onSearch($event)"></ion-searchbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list *ngFor = "let p of users">
+      <ion-card text-center>
+          <img src="../assets/imgs/waspLogo.png" class="roundedPic">
+          <h1>{{p.firstname}} {{p.lastname}}</h1>
+          <p>{{p.email}}</p>
+          <button ion-button >
+              <ion-icon (click) = "addFriend()">Add Friend</ion-icon>
+            </button>
+
+
+      </ion-card>
+     
+      
+    </ion-list>
+
+</ion-content>

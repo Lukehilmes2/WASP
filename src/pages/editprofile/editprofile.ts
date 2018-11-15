@@ -6,7 +6,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Profile} from '../../models/profile.model';
-import {UserProfileProvider} from '../../providers/user-profile/user-profile';
+
+
+
 
 
 @IonicPage()
@@ -23,6 +25,7 @@ export class EditprofilePage {
   profileData: AngularFireObject<Profile>;
   profile = {} as Profile;
   user: any;
+
 
 
 
@@ -44,8 +47,11 @@ export class EditprofilePage {
     console.log('ionViewDidLoad EditProfilePage');
     this.afAuth.authState.subscribe(data => {
       this.profileData = this.afDatabase.object(`users/${data.uid}`); 
+      
       this.profileData.valueChanges().subscribe(user => {
+       
            this.profile = user;
+           
 
        });
    });
@@ -56,6 +62,8 @@ export class EditprofilePage {
 // want to use service here.
     createProfile(){
       this.afAuth.authState.subscribe(auth => {
+        this.profile.email = auth.email;
+        this.profile.UserID = auth.uid;
         this.afDatabase.object(`users/${auth.uid}`).set(this.profile)
           .then(() => this.navCtrl.setRoot('NavTabsPage')
         

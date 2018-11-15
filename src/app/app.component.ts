@@ -5,8 +5,10 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {EditprofilePage} from '../pages/editprofile/editprofile';
 
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from '../models/profile.model';
+import { FriendsPage } from '../pages/friends/friends';
+
 
 
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';
@@ -24,18 +26,25 @@ export class MyApp {
 
 
   pages: Array<{title:string, component:any}>;
+  profile = {} as Profile;
+  profileData: AngularFireObject<Profile>;
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     authAF: AngularFireAuth, app: App,
-    loadingCtrl: LoadingController, db:AngularFireDatabase,) {
+    loadingCtrl: LoadingController, private db:AngularFireDatabase,) {
 
      
 
       this.pages =[
         
-        {title:'edit profile Page',component: EditprofilePage} // add the pages of the menu here 
+       // add the pages of the menu here 
+        
+        {title:'editprofilePage',component: EditprofilePage},
+        {title: 'FriendsPage',component: FriendsPage},
+     
       ];
+
       
 
       platform.ready().then(() => {
@@ -45,10 +54,16 @@ export class MyApp {
 
         const authObserver = authAF.authState.subscribe( user => {
 
+ 
 
-          if (user) {      
+          if (user) { 
 
-            
+            this.profileData = this.db.object(`users/${user.uid}`); 
+            this.profileData.valueChanges().subscribe(user => {
+                 this.profile = user;
+                 
+      
+             });
            
             this.rootPage = "NavTabsPage"; // change this to Profile page when it is created
             authObserver.unsubscribe();

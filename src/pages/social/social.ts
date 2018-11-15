@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Tabs } from 'ionic-angular';
 
 /**
  * Generated class for the BettingPage page.
@@ -14,6 +14,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'social.html',
 })
 export class SocialPage {
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

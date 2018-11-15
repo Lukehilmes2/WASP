@@ -1,24 +1,24 @@
  <ion-menu [content]="content">
     <ion-item text-center>
         <img src="../assets/imgs/waspLogo.png" class="roundedPic">
-        <h1 id = 'name'>{{firstname}}</h1>
+        <h1 id = 'name'>{{profile.firstname}} {{profile.lastname}}</h1>
+        <h2 id = 'email'>{{profile.email}}</h2>
      
     </ion-item>
 
-    <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
+    <button  ion-item menuClose  (click)= 'openPage(pages[0])'>
         <ion-icon  name="person" padding></ion-icon>
             Profile
     </button>
 
+    <button  ion-item menuClose (click)= 'openPage(pages[1])'>
+            <ion-icon  name="people" padding></ion-icon>
+                Friends
+        </button>
 
-    <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
+    <button  ion-item menuClose  (click)= 'openPage(pages[2])'>
         <ion-icon  name="card" padding></ion-icon>
             Payment Options
-    </button>
-
-    <button  ion-item menuClose *ngFor = 'let p of pages' (click)= 'openPage(p)'>
-        <ion-icon  name="settings" padding></ion-icon>
-            Edit Profile
     </button>
 
     <button  ion-item>

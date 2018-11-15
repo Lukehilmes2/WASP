@@ -25,13 +25,14 @@ import { Camera } from '@ionic-native/camera';
 import { EditprofilePage } from '../pages/editprofile/editprofile';
 import { SocialPageModule } from '../pages/social/social.module';
 import { EditprofilePageModule } from '../pages/editprofile/editprofile.module';
+import {FriendsPageModule} from '../pages/friends/friends.module';
+import { FriendsPage } from '../pages/friends/friends';
 
 
 
 @NgModule({
   declarations: [
     MyApp,
-    //EditprofilePage, // page for menu 
     
   ],
   imports: [
@@ -42,7 +43,8 @@ import { EditprofilePageModule } from '../pages/editprofile/editprofile.module';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    EditprofilePageModule
+    EditprofilePageModule,
+    FriendsPageModule
  
     
    
@@ -51,7 +53,8 @@ import { EditprofilePageModule } from '../pages/editprofile/editprofile.module';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    EditprofilePage, // page for menu
+    EditprofilePage,
+    FriendsPage, // page for menu
 
     
     
