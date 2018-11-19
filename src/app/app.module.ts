@@ -26,6 +26,7 @@ import {FriendsPageModule} from '../pages/friends/friends.module';
 import { FriendsPage } from '../pages/friends/friends';
 import { ProfileProvider } from '../providers/profile/profileProvider';
 import {LoginPageModule} from '../pages/login/login.module';
+import { PhotoProvider } from '../providers/photo/photo';
 
 
 
@@ -73,6 +74,7 @@ import {LoginPageModule} from '../pages/login/login.module';
     PhotoService,
     Camera,
     ProfileProvider,
+    PhotoProvider,
     
   
     
