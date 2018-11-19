@@ -26,23 +26,35 @@ npm start
 You will need to install:
 * [NodeJS](https://nodejs.org/en/download/)
 * [Ionic](https://ionicframework.com/getting-started/#cli) Framework
-* [AngularJS](https://cli.angular.io/)
-* [AngularFire](https://github.com/firebase/angularfire)
 
 ### Installing
-```
+
 Installing NodeJS:
-download NodeJS from the link above
-
+```
+download NodeJS 10.13.0 from the link above
+```
 Installing Ionic Framework:
+```
 npm install -g ionic
+```
 
-Installing AngularJS:
-npm install -g @angular/cli
+Install Necessary Packages:
+```
+npm install
+```
 
-Installing AngularFire:
-npm install firebase @angular/fire --save
+### Testing
+* [Karma](https://karma-runner.github.io/latest/index.html) - Automated testing used
+* [Jasmine](https://jasmine.github.io/) - Testing package used
+* [Webpack](https://webpack.js.org/) - Package bunding used
 
+Run unit tests:
+```
+npm test
+```
+Run CI test
+```
+npm run-script test-ci
 ```
 
 ## Built With

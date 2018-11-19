@@ -1,17 +1,21 @@
 dist: trusty
-sudo: false
+sudo: required
  
 language: node_js
 node_js:
-  - "8"
+  - "10.13.0"
   
 addons:
+  chrome: stable
   apt:
     sources:
       - google-chrome
     packages:
       - google-chrome-stable
- 
+
+before_script:
+    - "sudo chown root /opt/google/chrome/chrome-sandbox"
+    - "sudo chmod 4755 /opt/google/chrome/chrome-sandbox"
 cache:
   directories:
      - ./node_modules
@@ -21,4 +25,4 @@ install:
  
 script:
   - npm run test -- --single-run --no-progress --browser=ChromeHeadlessCI
-  - npm run e2e -- --no-progress --config=protractor-ci.conf.js
+ 
