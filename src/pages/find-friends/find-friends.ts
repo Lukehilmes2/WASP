@@ -48,9 +48,9 @@ this.users[0] =this.profile;
 
 
 searchUser(email:string,profile:Profile){
+  email = email.toLowerCase();
 
-  var ref = firebase.database().ref("users").orderByChild('email').equalTo(email)
-  var usr:string;
+  var ref = firebase.database().ref("users").orderByChild('email').equalTo(email);
 
   ref.on("child_added", function(snapshot) {
 
@@ -68,7 +68,7 @@ searchUser(email:string,profile:Profile){
 
   addFriend(){
       this.afAuth.authState.subscribe(auth => {
-      this.afDataBase.object(`users/${auth.uid}/friends/${this.profile.UserID}`).set(this.profile)
+      this.afDataBase.object(`users/${auth.uid}/friends/${this.profile.UserID}`).update(this.profile)
         .then(() => this.navCtrl.setRoot('NavTabsPage')
       
 

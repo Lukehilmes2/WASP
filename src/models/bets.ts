@@ -1,9 +1,13 @@
-export interface User{
+export interface Bets{
    yourTeam:string;
    oppTeam: string;
    time:string;
    date:string;
-   win:string;
+   win:boolean;
    oppUser:string;
-    amount: 0;
+    amount: number;
+    league:string;
+    game:string;
+    betType:string;
 }
+

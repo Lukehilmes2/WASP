@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Injectable  } from '@angular/core';
 import { Platform, App, LoadingController,Nav, NavController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -8,13 +8,18 @@ import {EditprofilePage} from '../pages/editprofile/editprofile';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from '../models/profile.model';
 import { FriendsPage } from '../pages/friends/friends';
+import { LoginPage } from '../pages/login/login';
+
+
 
 
 
 //import { ScreenOrientation } from '@ionic-native/screen-orientation';
 
 @Component({
-  templateUrl: 'app.html'
+
+  templateUrl: 'app.html',
+  
   
 })
 export class MyApp {
@@ -31,8 +36,9 @@ export class MyApp {
 
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
-    authAF: AngularFireAuth, app: App,
-    loadingCtrl: LoadingController, private db:AngularFireDatabase,) {
+    public authAF: AngularFireAuth, public app: App,
+    loadingCtrl: LoadingController, private db:AngularFireDatabase, 
+   ) {
 
      
 
@@ -42,6 +48,7 @@ export class MyApp {
         
         {title:'editprofilePage',component: EditprofilePage},
         {title: 'FriendsPage',component: FriendsPage},
+        {title: 'LoginPage', component: LoginPage},
      
       ];
 
@@ -64,12 +71,13 @@ export class MyApp {
                  
       
              });
-           
-            this.rootPage = "NavTabsPage"; // change this to Profile page when it is created
+           this.nav.setRoot('NavTabsPage')
+           // this.rootPage = "NavTabsPage"; // change this to Profile page when it is created
             authObserver.unsubscribe();
           } 
           else {
-            this.rootPage = "LoginPage";
+            this.nav.setRoot('LoginPage')
+           // this.rootPage = "LoginPage";
             authObserver.unsubscribe();
           }
         });
@@ -83,8 +91,10 @@ export class MyApp {
  
   openPage(page){
     this.nav.push(page.component); // changed from .setroot to push
-    //this.activePage = page;
+    this.activePage = page;
   }
+
+
   
 
   

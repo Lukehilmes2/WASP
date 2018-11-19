@@ -1,4 +1,4 @@
-import { Component,NgZone } from '@angular/core';
+import { Component,NgZone, Injectable } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading,
   AlertController, ToastController, ActionSheetController } from 'ionic-angular';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
@@ -7,8 +7,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Profile} from '../../models/profile.model';
 
-
-
+import {ProfileProvider} from '../../providers/profile/profileProvider'
 
 
 @IonicPage()
@@ -18,7 +17,7 @@ import {Profile} from '../../models/profile.model';
 })
 export class EditprofilePage {
 
-  rootPage:any = "";
+ rootPage:any = "";
   public EditProfileForm: FormGroup;
   public loading: Loading;
 
@@ -28,48 +27,37 @@ export class EditprofilePage {
 
 
 
-
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public authData: AuthProvider, public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController, public alertCtrl: AlertController,
     public afAuth: AngularFireAuth, public afDatabase: AngularFireDatabase, 
     public toastCTrl: ToastController, 
     public actionSheetCtrl: ActionSheetController, public zone: NgZone,
+    public profileService:ProfileProvider,
 
-   // public userProvider: UserProfileProvider, <== error here!!!
     ) { 
-
-   
+       
   } //end of constructor
 
 
-   ionViewDidLoad() { //this works, loads user name into fields
+   ionViewDidLoad() { 
     console.log('ionViewDidLoad EditProfilePage');
-    this.afAuth.authState.subscribe(data => {
-      this.profileData = this.afDatabase.object(`users/${data.uid}`); 
-      
-      this.profileData.valueChanges().subscribe(user => {
-       
-           this.profile = user;
-           
 
-       });
-   });
-
+   this.profileService.getUserProfile(this.profile); // gets user profile info and loads info into fields 
 
   }   
 
-// want to use service here.
-    createProfile(){
-      this.afAuth.authState.subscribe(auth => {
-        this.profile.email = auth.email;
-        this.profile.UserID = auth.uid;
-        this.afDatabase.object(`users/${auth.uid}`).set(this.profile)
-          .then(() => this.navCtrl.setRoot('NavTabsPage')
-        
   
-      )})
-    }
+// want to use service here.
+     updateProfile(){
+      this.profileService.updateProfile(this.profile);
+      this.navCtrl.setRoot('NavTabsPage');
+     
+  } 
+
+  changeProfilePic(){
+    
+  }
 
 
 }

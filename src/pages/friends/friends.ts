@@ -50,7 +50,7 @@ export class FriendsPage {
   }
 
   displayFriends(){
-
+// try to make friends names update when they change them. or could have an edit function to change them to what you want.
     this.afAuth.authState.subscribe(data => {
      this.profileData= firebase.database().ref(`users/${data.uid}/friends`); 
      this.profileData.on('value',friendsSnapshot =>{
@@ -58,7 +58,6 @@ export class FriendsPage {
       friendsSnapshot.forEach( friendsSnap => {
 
         this.friendsList.push(friendsSnap.val());
-        console.log(friendsSnap)
         return false;
       });
 

@@ -11,6 +11,92 @@
   </ion-header>
 
 
-<ion-content padding>
+<ion-content padding text-center>
+
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Select Type of Bet</ion-label>
+          <ion-select [(ngModel)] = 'Bet.betType' >
+              <ion-option *ngFor = " let bet of typesOFBets" > 
+                
+                <ion-item >
+                  {{bet}}
+                </ion-item>
+              </ion-option>
+    
+          </ion-select>
+        </ion-item>
+        
+      </ion-list>
+
+
+
+
+
+    <ion-list>
+        <ion-item>
+            <ion-label floating>Select Opponent</ion-label>
+          <ion-select [(ngModel)] = 'Bet.oppUser' >
+              <ion-option *ngFor = " let friend of friends" > 
+                
+                <ion-item >
+                  {{friend.Name}} 
+                </ion-item>
+              </ion-option>
+    
+          </ion-select>
+        </ion-item>
+        
+      </ion-list>
+
+
+
+  <ion-list>
+    <ion-item>
+        <ion-label floating>Select League</ion-label>
+      <ion-select [(ngModel)] = 'Bet.league' >
+          <ion-option *ngFor = " let league of leagues" > 
+            
+            <ion-item >
+              {{league}}
+            </ion-item>
+          </ion-option>
+
+      </ion-select>
+    </ion-item>
+    
+  </ion-list>
+
+  
+
+  <ion-list>
+      <ion-item>
+          <ion-label floating>Select Game</ion-label>
+        <ion-select [(ngModel)] = 'Bet.game' >
+            <ion-option *ngFor = " let game of games" > 
+              
+              <ion-item >
+                {{game}}
+              </ion-item>
+            </ion-option>
+  
+        </ion-select>
+      </ion-item>
+      
+    </ion-list>
+
+      <ion-item>
+          <ion-label floating>Enter amount
+             
+          </ion-label>
+    <ion-input type='number' floating input-number>
+
+    </ion-input>
+
+  </ion-item>
+  <p> 
+  <button ion-button >Place Bet</button>
+</p>
+
 
 </ion-content>
