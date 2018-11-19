@@ -47,6 +47,7 @@ npm install
 * [Karma](https://karma-runner.github.io/latest/index.html) - Automated testing used
 * [Jasmine](https://jasmine.github.io/) - Testing package used
 * [Webpack](https://webpack.js.org/) - Package bunding used
+
 Run unit tests:
 ```
 npm test
