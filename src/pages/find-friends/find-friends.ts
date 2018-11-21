@@ -59,6 +59,7 @@ searchUser(email:string,profile:Profile){
    profile.lastname = user.lastname;
    profile.UserID = user.UserID;
    profile.email = user.email;
+   profile.image = user.image;
    
    //return profile;
 

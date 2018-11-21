@@ -52,6 +52,7 @@ export class ProfileProvider {
            profile.lastname = user.lastname;
            profile.UserID = user.UserID;
            profile.phonenumber =user.phonenumber; 
+           profile.image = user.image;
               
            return profile;
           

@@ -10,11 +10,11 @@
 
 
 <ion-content padding>
-    <ion-list *ngFor = "let p of users">
+    <ion-list *ngFor = "let profile of users">
       <ion-card text-center>
-          <img src="../assets/imgs/waspLogo.png" class="roundedPic">
-          <h1>{{p.firstname}} {{p.lastname}}</h1>
-          <p>{{p.email}}</p>
+          <img [src] ="profile.image" class="roundedPic">
+          <h1>{{profile.firstname}} {{profile.lastname}}</h1>
+          <p>{{profile.email}}</p>
           <button ion-button >
               <ion-icon (click) = "addFriend()">Add Friend</ion-icon>
             </button>

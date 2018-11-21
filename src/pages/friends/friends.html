@@ -27,9 +27,9 @@
 
     <ion-list>
 
-        <button ion-item *ngFor="let friend of friendsList">
+        <button ion-item *ngFor= "let friend of friendsList">
           <ion-avatar item-start>
-            <img src="../assets/imgs/waspLogo.png">
+            <img [src] ="friend.image">
           </ion-avatar>
 
           <h2>{{friend.firstname}} {{friend.lastname}}</h2>

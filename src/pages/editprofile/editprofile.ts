@@ -7,6 +7,9 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Profile} from '../../models/profile.model';
 
+import {PhotoProvider} from '../../providers/photo/photo'
+import * as firebase from 'firebase/app'
+
 import {ProfileProvider} from '../../providers/profile/profileProvider'
 
 
@@ -25,6 +28,13 @@ export class EditprofilePage {
   profile = {} as Profile;
   user: any;
 
+  captureDataUrl: string;
+  photoRef: any;
+  imageRef: any;
+
+  filename: any;
+  storageRef: any;
+
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -34,8 +44,11 @@ export class EditprofilePage {
     public toastCTrl: ToastController, 
     public actionSheetCtrl: ActionSheetController, public zone: NgZone,
     public profileService:ProfileProvider,
+    public photService: PhotoProvider,
 
     ) { 
+      this.user = firebase.auth().currentUser;  
+      this.storageRef = firebase.storage().ref();
        
   } //end of constructor
 
@@ -43,9 +56,12 @@ export class EditprofilePage {
    ionViewDidLoad() { 
     console.log('ionViewDidLoad EditProfilePage');
 
-   this.profileService.getUserProfile(this.profile); // gets user profile info and loads info into fields 
+      this.profileService.getUserProfile(this.profile);
+     // gets user profile info and loads info into fields 
 
   }   
+
+
 
   
 // want to use service here.
@@ -56,6 +72,9 @@ export class EditprofilePage {
   } 
 
   changeProfilePic(){
+    this.photService.openMenu(this.user, "profile_pic", "avatars");
+    
+  
     
   }
 

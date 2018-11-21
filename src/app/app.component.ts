@@ -67,7 +67,11 @@ export class MyApp {
 
             this.profileData = this.db.object(`users/${user.uid}`); 
             this.profileData.valueChanges().subscribe(user => {
-                 this.profile = user;
+                 this.profile.firstname = user.firstname;
+                 this.profile.lastname = user.lastname;
+                
+                 this.profile.image = user.image;
+                 this.profile.phonenumber = user.phonenumber;
                  
       
              });

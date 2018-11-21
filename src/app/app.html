@@ -1,6 +1,6 @@
  <ion-menu [content]="content">
     <ion-item text-center>
-        <img src="../assets/imgs/waspLogo.png" class="roundedPic">
+        <img [src] = "profile.image" class="roundedPic">
         <h1 id = 'name'>{{profile.firstname}} {{profile.lastname}}</h1>
         <h2 id = 'email'>{{profile.email}}</h2>
      

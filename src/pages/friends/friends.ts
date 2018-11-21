@@ -8,6 +8,9 @@ import 'firebase/database';
 
 import {Profile} from '../../models/profile.model';
 
+import {ProfileProvider} from '../../providers/profile/profileProvider';
+import { from } from 'rxjs/observable/from';
+
 /**
  * Generated class for the FriendsPage page.
  *
@@ -29,7 +32,8 @@ export class FriendsPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public afDataBase:AngularFireDatabase,
-    public afAuth: AngularFireAuth,private afDatabase:AngularFireDatabase,) {
+    public afAuth: AngularFireAuth,private afDatabase:AngularFireDatabase,
+    public profileService: ProfileProvider) {
       
   
   }
@@ -56,15 +60,18 @@ export class FriendsPage {
      this.profileData.on('value',friendsSnapshot =>{
       this.friendsList = [];
       friendsSnapshot.forEach( friendsSnap => {
+        var friend = friendsSnap.val();
+       
 
-        this.friendsList.push(friendsSnap.val());
+        this.friendsList.push(friend);
+        console.log(friend.image);
+
         return false;
       });
 
      })
       
     })
-
 
   }
 

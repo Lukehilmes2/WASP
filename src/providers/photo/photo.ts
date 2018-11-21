@@ -25,7 +25,7 @@ export class PhotoProvider {
                 public zone: NgZone, public actionSheetCtrl: ActionSheetController, public loadingCtrl: LoadingController) {
 
         this.user = firebase.auth().currentUser;  
-        this.storageRef = firebase.storage().ref();
+        this.storageRef = firebase.storage().ref('');
 
 
 
@@ -46,8 +46,9 @@ export class PhotoProvider {
         this.camera.getPicture(options).then((imageData) => {
             this.captureDataUrl = 'data:image/jpeg;base64,' + imageData;
             this.upload();
+            console.log("image uploaded")
         }, (err) => {
-            console.log(err);
+           console.log(err);
         });
     }
 
@@ -58,21 +59,31 @@ export class PhotoProvider {
         // This will store into storage
         this.imageRef.putString(this.captureDataUrl, firebase.storage.StringFormat.DATA_URL).then((snapshot) => {
             // Do something here when the data is succesfully uploaded!
-
-            if(this.location == 'avatars') {
+              console.log(snapshot.downloadURL)
                 this.profile.image = snapshot.downloadURL;
+              
+
                 this.photoRef = this.profile.image;
+
+                this.updateProfile();
                 
-            } else{
-             
-            }
-            this.updateProfile();
+          
+            
             //this.success();
         });
-
+        
 
     }
 
+    // success() {
+    //     let msg = this.toastCTrl.create({
+    //         message: "Image successfull updated.",
+    //         duration: 3000,
+    //         position: "top"
+    //     });
+    //     msg.present(); 
+        
+    // }
 
     loader() {
         let loading = this.loadingCtrl.create({
@@ -84,7 +95,7 @@ export class PhotoProvider {
         setTimeout(() => {
             //this.success();
             loading.dismiss();
-        }, 3000);
+        }, 4000);
       }
 
     openMenu(user:Profile, file:string, page:string) {
@@ -122,9 +133,10 @@ export class PhotoProvider {
       }
 
       updateProfile() {
+        console.log("profile updating")
         this.afAuth.authState.subscribe(auth => {
-            this.afDatabase.object(`account/${auth.uid}`)
-            .set(this.profile);
+            this.afDatabase.object(`users/${auth.uid}`)
+            .update(this.profile);
       })
     }
 }
