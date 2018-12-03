@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading,
   AlertController} from 'ionic-angular';
-import { AngularFireDatabase, AngularFireList ,AngularFireObject} from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList ,AngularFireObject} from '@angular/fire/database';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
-import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { EmailValidator } from '../../validators/email';
 
 import {Profile} from '../../models/profile.model';

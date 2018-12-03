@@ -9,6 +9,7 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import { Profile } from '../models/profile.model';
 import { FriendsPage } from '../pages/friends/friends';
 import { LoginPage } from '../pages/login/login';
+import { PaymentPage } from '../pages/payment/payment';
 
 
 
@@ -49,6 +50,7 @@ export class MyApp {
         {title:'editprofilePage',component: EditprofilePage},
         {title: 'FriendsPage',component: FriendsPage},
         {title: 'LoginPage', component: LoginPage},
+        {title: 'PaymentPage', component: PaymentPage},
      
       ];
 

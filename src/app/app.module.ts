@@ -27,7 +27,8 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ProfileProvider } from '../providers/profile/profileProvider';
 import {LoginPageModule} from '../pages/login/login.module';
 import { PhotoProvider } from '../providers/photo/photo';
-
+import {Braintree} from '@ionic-native/braintree';
+import{PaymentPageModule} from '../pages/payment/payment.module';
 
 
 
@@ -49,6 +50,7 @@ import { PhotoProvider } from '../providers/photo/photo';
     EditprofilePageModule,
     FriendsPageModule,
     LoginPageModule,
+    PaymentPageModule,
  
     
    
@@ -75,6 +77,7 @@ import { PhotoProvider } from '../providers/photo/photo';
     Camera,
     ProfileProvider,
     PhotoProvider,
+    Braintree,
     
   
     
