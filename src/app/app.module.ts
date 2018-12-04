@@ -29,6 +29,7 @@ import {LoginPageModule} from '../pages/login/login.module';
 import { PhotoProvider } from '../providers/photo/photo';
 import {Braintree} from '@ionic-native/braintree';
 import{PaymentPageModule} from '../pages/payment/payment.module';
+import {sportsProvider} from '../providers/sportsProvider/sports.provider';
 
 
 
@@ -78,6 +79,7 @@ import{PaymentPageModule} from '../pages/payment/payment.module';
     ProfileProvider,
     PhotoProvider,
     Braintree,
+    sportsProvider,
     
   
     

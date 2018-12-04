@@ -7,7 +7,8 @@ import firebase, { User } from 'firebase/app';
 import 'firebase/database';
 
 import {Profile} from '../../models/profile.model';
-import {Bets} from '../../models/bets'
+import {Bets} from '../../models/bets';
+import {sportsProvider} from'../../providers/sportsProvider/sports.provider';
 
 
 
@@ -19,7 +20,8 @@ import {Bets} from '../../models/bets'
 
 export class BettingPage {
 
-  Bet = {} as Bets;
+  Bet = {} as Bets; //model
+
   UserProfile ={} as Profile;
   OpponentProfile = {} as Profile;
 
@@ -31,38 +33,71 @@ export class BettingPage {
   user: any;
   friends =[];
 
-  games =['game1','game2','game3']; // temps, get this from the sports api 
+  week14= [];
+  games=[];
+  selectableTeams =[];
+
+
+
 
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public afDataBase:AngularFireDatabase,
-    public afAuth: AngularFireAuth,private afDatabase:AngularFireDatabase,) {
+    public afAuth: AngularFireAuth,private afDatabase:AngularFireDatabase,
+    public sportsProvider:sportsProvider,) {
       
-  
+      this.getFriends();
+      this.week14 = sportsProvider.week14;
+      this.getGames();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BettingPage');
-    this.getFriends();
+    
   }
 
   getFriends(){
-    this.afAuth.authState.subscribe(data => {
-      this.profileData= firebase.database().ref(`users/${data.uid}/friends`); 
-      this.profileData.on('value',friendsSnapshot =>{
-       this.friendsList = [];
-       friendsSnapshot.forEach( friendsSnap => {
- 
-         this.friendsList.push(friendsSnap.val());
-         this.friends.push({Name:friendsSnap.val().firstname +" "+friendsSnap.val().lastname}) // not ideal at all 
-       
-       });
- 
-      })
-       
-     })
+    // try to make friends names update when they change them. or could have an edit function to change them to what you want.
+        this.afAuth.authState.subscribe(data => {
+         this.profileData= firebase.database().ref(`users/${data.uid}/friends`); 
+         this.profileData.on('value',friendsSnapshot =>{
+         // this.friendsList = [];
+          friendsSnapshot.forEach( friendsSnap => {
+            var friend = friendsSnap.val();
+           
+            this.friendsList.push(friend);
+            this.friends.push(friend);
+            return false;
+          });
+    
+         })
+          
+        })
+    
+      }
 
+
+  getGames(){
+    var game={};
+    for (var i in this.week14) {
+      var team1 = this.week14[i].game.team1;
+      var team2 = this.week14[i].game.team2;
+      game ={'team1':team1,'team2':team2};
+      this.games.push(game);
+    
+  }
+  return this.games;
+
+  }
+
+  selectTeam(){
+    console.log()
+
+  }
+
+  createBet(){
+    console.log(this.Bet.oppUser);
   }
 
 

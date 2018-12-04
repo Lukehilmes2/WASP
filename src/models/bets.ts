@@ -1,5 +1,5 @@
 export interface Bets{
-   yourTeam:string;
+   usersTeam:string;
    oppTeam: string;
    time:string;
    date:string;
@@ -7,7 +7,7 @@ export interface Bets{
    oppUser:string;
     amount: number;
     league:string;
-    game:string;
+    game: {};
     betType:string;
 }
 

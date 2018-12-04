@@ -47,7 +47,7 @@ export class ProfileProvider {
       
       this.profileData.valueChanges().subscribe(user => {
        
-            profile.email = user.email;
+           profile.email = user.email;
            profile.firstname = user.firstname;
            profile.lastname = user.lastname;
            profile.UserID = user.UserID;
