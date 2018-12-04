@@ -23,7 +23,7 @@ export class PaymentPage {
         primaryDescription: 'Your product or service (per /item, /month, /week, etc)',
     };
     constructor(private braintree: Braintree) {
-        //this.braintree.initialize(this.BRAINTREE_TOKEN);
+        this.braintree.initialize(this.BRAINTREE_TOKEN);
         //this.braintree.setupApplePay(this.appleOptions);
         //this.braintree.presentDropInPaymentUI(this.paymentOptions);
 
