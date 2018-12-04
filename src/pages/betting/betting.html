@@ -29,26 +29,24 @@
         
       </ion-list>
 
-
-
-
-
     <ion-list>
         <ion-item>
             <ion-label floating>Select Opponent</ion-label>
           <ion-select [(ngModel)] = 'Bet.oppUser' >
-              <ion-option *ngFor = " let friend of friends" > 
-                
+            <ion-option *ngFor= "let friend of friendsList">
+              <ion-list>
                 <ion-item >
-                  {{friend.Name}} 
+        
+                  {{friend.firstname}} {{friend.lastname}}
+                  
                 </ion-item>
-              </ion-option>
-    
+            </ion-list>
+          </ion-option>
+            
           </ion-select>
         </ion-item>
         
       </ion-list>
-
 
 
   <ion-list>
@@ -72,11 +70,27 @@
   <ion-list>
       <ion-item>
           <ion-label floating>Select Game</ion-label>
-        <ion-select [(ngModel)] = 'Bet.game' >
-            <ion-option *ngFor = " let game of games" > 
+        <ion-select [(ngModel)] = 'Bet.game' (ionChange)= 'selectTeam()'>
+            <ion-option *ngFor = " let game of games"> 
               
               <ion-item >
-                {{game}}
+                {{game.team1}} vs {{game.team2}}
+              </ion-item>
+            </ion-option>
+  
+        </ion-select>
+      </ion-item>
+      
+    </ion-list>
+
+    <ion-list>
+      <ion-item>
+          <ion-label floating>Select Winning Team</ion-label>
+        <ion-select [(ngModel)] = 'Bet.userTeam'>
+            <ion-option *ngFor = " let team of selectableTeams" > 
+              
+              <ion-item >
+                {{team}}
               </ion-item>
             </ion-option>
   
@@ -89,13 +103,13 @@
           <ion-label floating>Enter amount
              
           </ion-label>
-    <ion-input type='number' floating input-number>
+    <ion-input [(ngModel)] ='Bet.amount' type='number' floating input-number>
 
     </ion-input>
 
   </ion-item>
   <p> 
-  <button ion-button >Place Bet</button>
+  <button ion-button (click)="createBet()" >Place Bet</button>
 </p>
 
 

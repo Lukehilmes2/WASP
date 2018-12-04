@@ -27,7 +27,7 @@ import { FriendsPage } from '../pages/friends/friends';
 import { ProfileProvider } from '../providers/profile/profileProvider';
 import {LoginPageModule} from '../pages/login/login.module';
 import { PhotoProvider } from '../providers/photo/photo';
-
+import {sportsProvider} from '../providers/sportsProvider/sports.provider';
 
 
 
@@ -75,6 +75,7 @@ import { PhotoProvider } from '../providers/photo/photo';
     Camera,
     ProfileProvider,
     PhotoProvider,
+    sportsProvider,
     
   
     
