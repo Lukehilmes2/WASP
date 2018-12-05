@@ -1,13 +1,26 @@
 export interface Bets{
-   usersTeam:string;
-   oppTeam: string;
+   usersTeam:any;
+   usersName:any;
+
+   userPic:any;
+   oppPic:any;
+  // usersTeamIndex:number;
+ 
+
    time:string;
    date:string;
    win:boolean;
-   oppUser:string;
+
+   oppTeam: any;
+   //oppTeamIndex:number;
+   oppUser:any;
+   oppUserName:string;
+   oppUserID:string;
+
     amount: number;
-    league:string;
-    game: {};
-    betType:string;
+    league:any;
+    game: number;
+    betType:any;
+
 }
 

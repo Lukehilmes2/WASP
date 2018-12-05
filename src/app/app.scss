@@ -109,10 +109,30 @@ ion-item-options {
     margin-right: auto;
 }
 
+.homeRoundedPic {
+    margin: 5px;
+    width: 75px;
+    height: 75px;
+    //-webkit-border-radius: 50%;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.betCard{
+
+    background-color: rgba(0, 0, 0, 0.75);;
+    
+    color: color($colors, primary);
+    border-radius: 5%;
+    
+}
+
 .item_image {
     width: 100%;
     height: auto;
 }
+
 
 .menu{
     $menu-md-background:black;

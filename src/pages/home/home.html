@@ -21,9 +21,52 @@
 
 
 <ion-content padding>
-<ion-item>
-  <ion-label></ion-label>
-  </ion-item>
+  <ion-list *ngFor = "let bet of betList">
+    <ion-card text-center class ='betCard'>
+      <ion-row>
+        <ion-col>
+            <ion-avatar item-start>
+                <img [src]="bet.userPic" class ="homeRoundedPic">
+              </ion-avatar>
+          {{bet.usersName}}
+        </ion-col>
+        <ion-col>
+            <ion-avatar item-start>
+                <img [src]="bet.oppPic" class ="homeRoundedPic">
+              </ion-avatar>
+          {{bet.oppUserName}}
+        </ion-col>
+
+      </ion-row>
+
+      <ion-card-content> 
+        <ion-row>
+          <ion-col>
+            
+            <h1>{{bet.usersTeam}} VS {{bet.oppTeam}}</h1>
+            
+              <h2>$ {{bet.amount}}</h2>
+            
+          </ion-col>
+        </ion-row>
+        </ion-card-content>
+
+        <ion-row>
+            <ion-col>
+              <button ion-button icon-start clear small>
+                <ion-icon name="text"></ion-icon>
+                <div>4 Comments</div>
+              </button>
+            </ion-col>
+            </ion-row>
+        
+  
+
+
+    </ion-card>
+   
+    
+  </ion-list>
  
 
 </ion-content>

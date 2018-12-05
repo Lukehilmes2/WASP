@@ -17,11 +17,10 @@
         <ion-item>
             <ion-label floating>Select Type of Bet</ion-label>
           <ion-select [(ngModel)] = 'Bet.betType' >
-              <ion-option *ngFor = " let bet of typesOFBets" > 
-                
-                <ion-item >
+              <ion-option *ngFor = " let bet of typesOFBets; let i = index" [value] = 'typesOFBets[i]' > 
+           
                   {{bet}}
-                </ion-item>
+           
               </ion-option>
     
           </ion-select>
@@ -33,14 +32,12 @@
         <ion-item>
             <ion-label floating>Select Opponent</ion-label>
           <ion-select [(ngModel)] = 'Bet.oppUser' >
-            <ion-option *ngFor= "let friend of friendsList">
-              <ion-list>
-                <ion-item >
+            <ion-option *ngFor= "let friend of friendsList; let i = index" [value] = "i">
+           
         
                   {{friend.firstname}} {{friend.lastname}}
                   
-                </ion-item>
-            </ion-list>
+          
           </ion-option>
             
           </ion-select>
@@ -53,7 +50,7 @@
     <ion-item>
         <ion-label floating>Select League</ion-label>
       <ion-select [(ngModel)] = 'Bet.league' >
-          <ion-option *ngFor = " let league of leagues" > 
+          <ion-option *ngFor = " let league of leagues; let i = index" [value] = 'leagues[i]' > 
             
             <ion-item >
               {{league}}
@@ -71,11 +68,11 @@
       <ion-item>
           <ion-label floating>Select Game</ion-label>
         <ion-select [(ngModel)] = 'Bet.game' (ionChange)= 'selectTeam()'>
-            <ion-option *ngFor = " let game of games"> 
+            <ion-option  *ngFor = " let game of games; let i = index" [value]='i'> 
               
-              <ion-item >
+           
                 {{game.team1}} vs {{game.team2}}
-              </ion-item>
+        
             </ion-option>
   
         </ion-select>
@@ -86,12 +83,12 @@
     <ion-list>
       <ion-item>
           <ion-label floating>Select Winning Team</ion-label>
-        <ion-select [(ngModel)] = 'Bet.userTeam'>
-            <ion-option *ngFor = " let team of selectableTeams" > 
+        <ion-select [(ngModel)] = 'Bet.usersTeam'>
+            <ion-option *ngFor = " let team of selectableTeams; let i = index" [value]='i'> 
               
-              <ion-item >
+       
                 {{team}}
-              </ion-item>
+      
             </ion-option>
   
         </ion-select>

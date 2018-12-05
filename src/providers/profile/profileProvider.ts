@@ -4,8 +4,6 @@ import {Profile} from '../../models/profile.model';
 import {AngularFireAuth} from 'angularfire2/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-
-
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 
