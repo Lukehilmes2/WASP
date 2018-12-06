@@ -1,38 +1,83 @@
-import { Braintree, ApplePayOptions, PaymentUIOptions, PaymentUIResult } from '@ionic-native/braintree';
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController, AlertController, } from 'ionic-angular';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
+import { FormBuilder } from '@angular/forms';
+import { AuthProvider } from '../../providers/auth/auth';
+import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app'
+import { Profile } from '../../models/profile.model';
 import * as dropin from 'braintree-web-drop-in';
+
+declare var require: any
+var braintree = require("braintree");
+
 @IonicPage()
 @Component({
-    selector: 'page-login',
+    selector: 'page-payment',
     templateUrl: 'payment.html',
 })
 
 export class PaymentPage {
     BRAINTREE_TOKEN = 'sandbox_dwyqs646_wms26tngpxd9t4r5';
+    MERCHANT_ID = 'wms26tngpxd9t4r5';
+    PUBLIC_KEY = 'tbv5pdskbtrvvr5j';
+    PRIVATE_KEY = 'da56e8a3fdfd15d90739880fb1bd5639';
+
+    profileData: AngularFireObject<Profile>;
+    profile = {} as Profile;
+    user: any;
+
     braintreeIsReady: boolean;
     dropIninstance: any;
-    appleOptions: ApplePayOptions = {
-        merchantId: 'wms26tngpxd9t4r5',
-        currency: 'USD',
-        country: 'US'
-    };
 
-    paymentOptions: PaymentUIOptions = {
-        amount: '14.99',
-        primaryDescription: 'Your product or service (per /item, /month, /week, etc)',
-    };
-    constructor(private braintree: Braintree) {
-        this.braintree.initialize(this.BRAINTREE_TOKEN);
-        //this.braintree.setupApplePay(this.appleOptions);
-        //this.braintree.presentDropInPaymentUI(this.paymentOptions);
+    // gateway = braintree.connect(
+    //     {
+    //         environment: braintree.Environment.Sandbox,
+    //         merchantId: this.MERCHANT_ID,
+    //         publicKey: this.PUBLIC_KEY,
+    //         privateKey: this.PRIVATE_KEY
+    //     });
 
-        
 
-          }
-          
+    constructor(public navCtrl: NavController, public navParams: NavParams,
+        public authData: AuthProvider, public formBuilder: FormBuilder,
+        public loadingCtrl: LoadingController, public alertCtrl: AlertController,
+        public afAuth: AngularFireAuth, public afDatabase: AngularFireDatabase) {
 
-    
+        this.user = firebase.auth().currentUser;
+
+
+
+
+
+
+
+    }
+
+    //   generateClientToken() {
+    //     console.log("Generating client token...");
+
+    //     var gateway = braintree.connect(
+    //       {
+    //         environment: braintree.Environment.Sandbox,
+    //         merchantId: this.MERCHANT_ID,
+    //         publicKey: this.PUBLIC_KEY,
+    //         privateKey: this.PRIVATE_KEY
+    //       })
+    //       console.log(gateway);
+    //       gateway.clientToken.generate({
+    //         customerId: this.user.uid
+    //       }, function (err, response) {
+    //         console.log(response)
+    //         if (err) {
+    //           console.log("Bad");
+    //         }
+    //         else {
+    //           console.log(response.clientToken);
+    //           this.BRAINTREE_TOKEN = response.clientToken;
+    //         }
+    //       });
+    //   }
 
     ionViewDidLoad() {
         console.log('ionViewDidLoad PaymentPage');
@@ -66,20 +111,35 @@ export class PaymentPage {
         });
     }
 
+
     pay() {
+
+
         this.dropIninstance.requestPaymentMethod((err, payload) => {
-          if (err) {
-              alert("incorrect information");
-              console.log("Nope");
-            // deal with error
-          }
-          else {
-            //send nonce to the server
-            console.log("Paid!")
-    
-          }
+            if (err) {
+                let alert = this.alertCtrl.create({
+                    title: 'Incorrect Information',
+                    subTitle: 'Enter a valid payment',
+                    buttons: ['Dismiss']
+                });
+                alert.present();
+                //console.log("Nope");
+                // deal with error
+            }
+            else {
+                //send nonce to the server
+                let alert = this.alertCtrl.create({
+                    title: 'Payment Accepted',
+                    buttons: ['Dismiss']
+                });
+                alert.present();
+
+                //this.navCtrl.push("NavTabsPage");
+                console.log(payload.nonce)
+
+            }
         });
-      }
+    }
 
 
 

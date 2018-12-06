@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, List } from 'ionic-angular';
-import { AngularFireDatabase, AngularFireObject,AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 
 import firebase, { User } from 'firebase/app';
 import 'firebase/database';
 
-import {Profile} from '../../models/profile.model';
-import {Bets} from '../../models/bets';
-import {sportsProvider} from'../../providers/sportsProvider/sports.provider';
-import {ProfileProvider} from'../../providers/profile/profileProvider';
+import { Profile } from '../../models/profile.model';
+import { Bets } from '../../models/bets';
+import { sportsProvider } from '../../providers/sportsProvider/sports.provider';
+import { ProfileProvider } from '../../providers/profile/profileProvider';
 
 
 
@@ -24,20 +24,20 @@ export class BettingPage {
 
   Bet = {} as Bets; // Bet model
 
-  UserProfile ={} as Profile; // profile model
-  UserProfile2 ={} as Profile; // profile model  OpponentProfile = {} as Profile; // profile model
+  UserProfile = {} as Profile; // profile model
+  UserProfile2 = {} as Profile; // profile model  OpponentProfile = {} as Profile; // profile model
 
-  leagues = ['NFL','NHL','NBA',"MLB"]; 
-  typesOFBets =['Game','Over/Under','Odds'];
+  leagues = ['NFL', 'NHL', 'NBA', "MLB"];
+  typesOFBets = ['Game', 'Over/Under', 'Odds'];
 
   friendsList: Array<Profile> = []; // array of profile models of your friends
   profileData: any;
   user: any;
-  friends =[];
+  friends = [];
 
-  week14= []; // current week games in an array
-  games=[]; // array to ngFor through 
-  selectableTeams =[]; // array that you can select which team to bet on
+  week14 = []; // current week games in an array
+  games = []; // array to ngFor through 
+  selectableTeams = []; // array that you can select which team to bet on
 
 
 
@@ -58,85 +58,85 @@ export class BettingPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad BettingPage');
-    
+
   }
 
-  getFriends(){
+  getFriends() {
     // try to make friends names update when they change them. or could have an edit function to change them to what you want.
-        this.afAuth.authState.subscribe(data => {
-         
-         this.profileData= firebase.database().ref(`users/${data.uid}/friends`); 
-         this.profileData.on('value',friendsSnapshot =>{
-         // this.friendsList = [];
-          friendsSnapshot.forEach( friendsSnap => {
-            var friend = friendsSnap.val();
-           
-            this.friendsList.push(friend);
-            this.friends.push(friend);
-            return false;
-          });
-    
-         })
-          
-        })
-    
-      }
+    this.afAuth.authState.subscribe(data => {
 
-      setUserNames(){
-     
-        var oppProfile = this.friendsList[this.Bet.oppUser];
-        this.Bet.oppUserID = oppProfile.UserID;
-        this.Bet.oppUserName = oppProfile.firstname;
-        this.Bet.oppPic = oppProfile.image;
+      this.profileData = firebase.database().ref(`users/${data.uid}/friends`);
+      this.profileData.on('value', friendsSnapshot => {
+        // this.friendsList = [];
+        friendsSnapshot.forEach(friendsSnap => {
+          var friend = friendsSnap.val();
 
-      // user name here 
-       this.Bet.usersName = this.UserProfile2.firstname;
-       this.Bet.userPic = this.UserProfile2.image;
-        
-        }
+          this.friendsList.push(friend);
+          this.friends.push(friend);
+          return false;
+        });
+
+      })
+
+    })
+
+  }
+
+  setUserNames() {
+
+    var oppProfile = this.friendsList[this.Bet.oppUser];
+    this.Bet.oppUserID = oppProfile.UserID;
+    this.Bet.oppUserName = oppProfile.firstname;
+    this.Bet.oppPic = oppProfile.image;
+
+    // user name here 
+    this.Bet.usersName = this.UserProfile2.firstname;
+    this.Bet.userPic = this.UserProfile2.image;
+
+  }
 
 
-  getGames(){
-    var game={};
+  getGames() {
+    var game = {};
     for (var i in this.week14) {
       var team1 = this.week14[i].game.team1;
       var team2 = this.week14[i].game.team2;
-      game ={'team1':team1,'team2':team2};
+      game = { 'team1': team1, 'team2': team2 };
       this.games.push(game);
     }
-  return this.games;
+    return this.games;
   }
 
 
 
-  selectTeam(){
+  selectTeam() {
     this.getGames();
     this.selectableTeams.push(this.games[this.Bet.game].team1);
     this.selectableTeams.push(this.games[this.Bet.game].team2);
 
-   // console.log(this.Bet.game)
+    // console.log(this.Bet.game)
 
   }
 
-  createBet(){
-   this.setUserNames();
+  createBet() {
+    this.setUserNames();
     this.assignTeams();
  
     this.placeBet();
   }
 
 
-  assignTeams(){
+  assignTeams() {
 
-  this.getGames();
+    this.getGames();
 
-  if(this.Bet.usersTeam == 0){
-    this.Bet.usersTeam = this.games[this.Bet.game].team1;
-    this.Bet.oppTeam = this.games[this.Bet.game].team2;
-  }// end if 
-  else{
-    this.Bet.usersTeam = this.games[this.Bet.game].team2;
-    this.Bet.oppTeam = this.games[this.Bet.game].team1;
+    if (this.Bet.usersTeam == 0) {
+      this.Bet.usersTeam = this.games[this.Bet.game].team1;
+      this.Bet.oppTeam = this.games[this.Bet.game].team2;
+    }// end if 
+    else {
+      this.Bet.usersTeam = this.games[this.Bet.game].team2;
+      this.Bet.oppTeam = this.games[this.Bet.game].team1;
     } // end else
 
   }// end assignTeams()
