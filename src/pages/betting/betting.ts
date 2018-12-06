@@ -49,6 +49,7 @@ export class BettingPage {
     public profileService:ProfileProvider,
     ) {
       
+      this.profileService.getUserProfile(this.UserProfile); // gets user profile to update merchant account
       this.profileService.getUserProfile(this.UserProfile2); // think this gets the opponents profile
       this.Bet.date = new Date().toDateString(); // gets date and sets it to Bet.date
       this.getFriends();
@@ -142,8 +143,15 @@ export class BettingPage {
   }// end assignTeams()
 
 
-    placeBet(){ // takes the bet and uploads it to firebase hopfully for both you and the person betting against
 
+    placeBet(){ // takes the bet and uploads it to firebase hopfully for both you and the person betting against
+     
+      this.UserProfile.merchantAccount = Number(this.UserProfile.merchantAccount) + Number(this.Bet.amount) // to update the amount of merchant account for amount in total bets
+
+      // need to update opp merchant account 
+
+
+      this.profileService.updateProfile(this.UserProfile);
         this.afAuth.authState.subscribe(data => {
          this.profileData= firebase.database().ref(`users/${data.uid}/currentBets`); 
          this.profileData.push(this.Bet);

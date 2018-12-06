@@ -5,5 +5,6 @@ export interface Profile{
     phonenumber: number;
     email:string;
     UserID:string;
+    merchantAccount: number;
 
 }
