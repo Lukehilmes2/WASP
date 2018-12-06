@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild, OnInit, Renderer  } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Loading,
   AlertController} from 'ionic-angular';
 import { AngularFireDatabase, AngularFireList, AngularFireObject,  } from 'angularfire2/database';
@@ -22,6 +22,7 @@ import {ProfileProvider} from'../../providers/profile/profileProvider';
 
 })
 export class HomePage {
+  
   profile:Profile;
 
   Bet = {} as Bets; // Bet model
@@ -80,8 +81,6 @@ export class HomePage {
             })
         
           }
-
-
 
 
 

@@ -18,54 +18,57 @@
    
     </ion-header>
    
+   
 
 
 <ion-content padding>
-  <ion-list *ngFor = "let bet of betList">
-    <ion-card text-center class ='betCard'>
-      <ion-row>
-        <ion-col>
-            <ion-avatar item-start>
-                <img [src]="bet.userPic" class ="homeRoundedPic">
-              </ion-avatar>
-          {{bet.usersName}}
-        </ion-col>
-        <ion-col>
-            <ion-avatar item-start>
-                <img [src]="bet.oppPic" class ="homeRoundedPic">
-              </ion-avatar>
-          {{bet.oppUserName}}
-        </ion-col>
 
-      </ion-row>
-
-      <ion-card-content> 
-        <ion-row>
-          <ion-col>
-            
-            <h1>{{bet.usersTeam}} VS {{bet.oppTeam}}</h1>
-            
-              <h2>$ {{bet.amount}}</h2>
-            
-          </ion-col>
-        </ion-row>
-        </ion-card-content>
-
-        <ion-row>
-            <ion-col>
-              <button ion-button icon-start clear small>
-                <ion-icon name="text"></ion-icon>
-                <div>4 Comments</div>
-              </button>
-            </ion-col>
-            </ion-row>
-        
-  
-
-
-    </ion-card>
    
+  
+  <ion-list *ngFor = "let bet of betList">
+
+   
+
+
+      <ion-card class ='betCard'>
+       
+        <ion-grid>
+          <ion-row>
+            
+
+            <ion-col>
+         
+            <ion-avatar item-left>
+            
+                <img [src]="bet.oppPic" class ="homeRoundedPic">
+                <ion-label text-align-center>
+                    {{bet.oppUserName}}
+
+                </ion-label>
+            
+            </ion-avatar>
+          </ion-col>
+          
+          <ion-col>
+            <ion-row>
+            <ion-label>Type of Bet: {{bet.betType}}</ion-label>
+            
+          </ion-row>
+          <ion-row>
+            <ion-label> Wager on: {{bet.usersTeam}} to win</ion-label>
+          </ion-row>
+          <ion-row >
+           <ion-label> Amount: $ {{bet.amount}}.00</ion-label>
+          </ion-row>
+          </ion-col>
+
+          </ion-row>
+          <ion-row></ion-row>
+        </ion-grid>
     
+
+      </ion-card>
+  
   </ion-list>
  
 
