@@ -71,6 +71,8 @@ export class MyApp {
             this.profileData.valueChanges().subscribe(user => {
                  this.profile.firstname = user.firstname;
                  this.profile.lastname = user.lastname;
+                 this.profile.email = user.email;
+                 this.profile.merchantAccount =user.merchantAccount;
                 
                  this.profile.image = user.image;
                  this.profile.phonenumber = user.phonenumber;
