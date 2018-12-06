@@ -34,6 +34,7 @@ import {sportsProvider} from '../providers/sportsProvider/sports.provider';
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,
@@ -62,6 +63,7 @@ import {sportsProvider} from '../providers/sportsProvider/sports.provider';
     MyApp,
     EditprofilePage,
     FriendsPage, // page for menu
+   
     
    
 

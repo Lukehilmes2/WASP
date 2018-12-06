@@ -110,7 +110,7 @@ ion-item-options {
 }
 
 .homeRoundedPic {
-    margin: 5px;
+    //margin: 5px;
     width: 75px;
     height: 75px;
     //-webkit-border-radius: 50%;
@@ -121,12 +121,21 @@ ion-item-options {
 }
 .betCard{
 
-    background-color: rgba(0, 0, 0, 0.75);;
-    
+    background-color: rgba(0, 0, 0, 0.75);
+   
+    height:150px;
+   
     color: color($colors, primary);
-    border-radius: 5%;
+
+    
+
+    //border-radius: 5%;
     
 }
+
+
+
+
 
 .item_image {
     width: 100%;

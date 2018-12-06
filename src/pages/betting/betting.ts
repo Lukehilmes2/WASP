@@ -49,7 +49,8 @@ export class BettingPage {
     public profileService:ProfileProvider,
     ) {
       
-      this.profileService.getUserProfile(this.UserProfile2);
+      this.profileService.getUserProfile(this.UserProfile2); // think this gets the opponents profile
+      this.Bet.date = new Date().toDateString(); // gets date and sets it to Bet.date
       this.getFriends();
       this.week14 = sportsProvider.week14; // assigns to the json object
       this.getGames();
@@ -120,6 +121,7 @@ export class BettingPage {
   createBet(){
    this.setUserNames();
     this.assignTeams();
+ 
     this.placeBet();
   }
 
@@ -140,21 +142,14 @@ export class BettingPage {
   }// end assignTeams()
 
 
+    placeBet(){ // takes the bet and uploads it to firebase hopfully for both you and the person betting against
 
-
-placeBet(){ // takes the bet and uploads it to firebase hopfully for both you and the person betting against
-
-        
         this.afAuth.authState.subscribe(data => {
          this.profileData= firebase.database().ref(`users/${data.uid}/currentBets`); 
          this.profileData.push(this.Bet);
 
-          
         });
-
-
-
-}
+    }
 
 
 }

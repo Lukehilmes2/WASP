@@ -8,7 +8,7 @@ export interface Bets{
  
 
    time:string;
-   date:string;
+   date:any;
    win:boolean;
 
    oppTeam: any;

@@ -49,8 +49,8 @@
   <ion-list>
     <ion-item>
         <ion-label floating>Select League</ion-label>
-      <ion-select [(ngModel)] = 'Bet.league' >
-          <ion-option *ngFor = " let league of leagues; let i = index" [value] = 'leagues[i]' > 
+      <ion-select [(ngModel)] = 'Bet.league'>
+          <ion-option *ngFor = " let league of leagues; let i = index" [value] = 'leagues[i]'  > 
             
             <ion-item >
               {{league}}
