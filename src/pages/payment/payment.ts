@@ -100,6 +100,7 @@ export class PaymentPage {
 
 
               });
+              
 
 
     }
@@ -134,7 +135,7 @@ export class PaymentPage {
                 });
                 alert.present();
 
-                //this.navCtrl.push("NavTabsPage");
+
                 console.log(payload.nonce)
 
             }

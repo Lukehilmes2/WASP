@@ -21,10 +21,10 @@ export class ProfileProvider {
 
 
 
-  constructor(public http: HttpClient,private afAuth: AngularFireAuth,
+  constructor(private afAuth: AngularFireAuth,
      private afDataBase: AngularFireDatabase,
      public app: App, public zone: NgZone,) {
-    console.log('Profile Provider');
+    //console.log('Profile Provider');
   }
 
 

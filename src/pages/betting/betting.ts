@@ -147,7 +147,7 @@ export class BettingPage {
         this.afAuth.authState.subscribe(data => {
          this.profileData= firebase.database().ref(`users/${data.uid}/currentBets`); 
          this.profileData.push(this.Bet);
-
+         
         });
     }
 

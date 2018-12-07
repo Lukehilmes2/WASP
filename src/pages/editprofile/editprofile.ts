@@ -41,8 +41,8 @@ export class EditprofilePage {
     public authData: AuthProvider, public formBuilder: FormBuilder,
     public loadingCtrl: LoadingController, public alertCtrl: AlertController,
     public afAuth: AngularFireAuth, public afDatabase: AngularFireDatabase, 
-    public toastCTrl: ToastController, 
-    public actionSheetCtrl: ActionSheetController, public zone: NgZone,
+  
+    public actionSheetCtrl: ActionSheetController,
     public profileService:ProfileProvider,
     public photService: PhotoProvider,
 
