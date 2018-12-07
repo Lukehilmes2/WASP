@@ -80,6 +80,7 @@ export class RegisterPage {
       
       this.profile.firstname = "";
       this.profile.lastname = "";
+      this.profile.merchantAccount =0;
       this.profile.image = 'https://firebasestorage.googleapis.com/v0/b/w-a-s-p.appspot.com/o/StockLogo%2FwaspLogo.png?alt=media&token=f6174989-96b3-47de-bc2e-64c0ff19060c';
       
       this.db.object(`users/${auth.uid}`).set(this.profile)

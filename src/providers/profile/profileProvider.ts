@@ -51,6 +51,7 @@ export class ProfileProvider {
            profile.UserID = user.UserID;
            profile.phonenumber =user.phonenumber; 
            profile.image = user.image;
+           profile.merchantAccount = user.merchantAccount;
               
            return profile;
           
